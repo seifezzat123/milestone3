@@ -1,0 +1,3 @@
+admin1 strongpass admin
+user1 pass123 user
+guest1 guestpass guest
