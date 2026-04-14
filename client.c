@@ -32,7 +32,7 @@ void *run_user() {
 
     server_address.sin_family = AF_INET;
     server_address.sin_port = htons(PORT);
-    server_address.sin_addr.s_addr = inet_addr("127.0.0.1"); // connect to localhost
+    server_address.sin_addr.s_addr = inet_addr("127.0.0.1"); 
 
     if (connect(sock, (struct sockaddr *)&server_address, sizeof(server_address)) < 0) {
         perror("Connection failed");
