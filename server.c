@@ -72,7 +72,6 @@ void *handle_client(void *arg) {
         send(new_socket, response, resp_len, 0);
     }
 
-    // Step 2: Continuous command loop
     while (1) {
         memset(buffer, 0, BUFFER_SIZE);
         valread = read(new_socket, buffer, BUFFER_SIZE);
@@ -92,7 +91,6 @@ void *handle_client(void *arg) {
             break;
         }
 
-        // Role-based restrictions
         if (strcmp(role, "guest") == 0) {
             if (!(strncmp(buffer, "ls", 2) == 0 || strncmp(buffer, "cat", 3) == 0)) {
                 snprintf(response, sizeof(response), "Permission denied for guest");
