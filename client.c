@@ -14,20 +14,16 @@ void *run_user() {
     char buffer[BUFFER_SIZE];
     char username[BUFFER_SIZE], password[BUFFER_SIZE], credentials[BUFFER_SIZE];
 
-    // Ask for username
+ 
     printf("Enter username: ");
     fgets(username, BUFFER_SIZE, stdin);
     username[strcspn(username, "\n")] = '\0';
 
-    // Ask for password
     printf("Enter password: ");
     fgets(password, BUFFER_SIZE, stdin);
     password[strcspn(password, "\n")] = '\0';
-
-    // Combine into "username password"
     snprintf(credentials, sizeof(credentials), "%s %s", username, password);
 
-    // Create socket
     sock = socket(AF_INET, SOCK_STREAM, 0);
     if (sock < 0) {
         perror("Socket creation failed");

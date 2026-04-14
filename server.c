@@ -7,9 +7,8 @@
 #include "security.h"
 
 #define PORT 8080
-#define BUFFER_SIZE 2048   // bigger buffer for command output
+#define BUFFER_SIZE 2048  
 
-// Authenticate and return role or "login failed"
 char* authenticate(char *credentials) {
     FILE *file = fopen("users.txt", "r");
     if (!file) {
@@ -149,7 +148,6 @@ int main() {
     struct sockaddr_in address;
     int addrlen = sizeof(address);
 
-    // Create socket
     server_fd = socket(AF_INET, SOCK_STREAM, 0);
     if (server_fd == -1) {
         perror("Socket creation failed");
@@ -157,7 +155,6 @@ int main() {
     }
     printf("Socket created successfully.\n");
 
-    // Bind
     address.sin_family = AF_INET;
     address.sin_addr.s_addr = INADDR_ANY;
     address.sin_port = htons(PORT);
@@ -169,7 +166,6 @@ int main() {
     }
     printf("Bind complete.\n");
 
-    // Listen
     if (listen(server_fd, 3) < 0) {
         perror("Listen failed");
         close(server_fd);
@@ -177,7 +173,6 @@ int main() {
     }
     printf("Listening on port %d...\n", PORT);
 
-    // Accept loop
     while (1) {
         int *new_socket = malloc(sizeof(int));
         *new_socket = accept(server_fd, (struct sockaddr *)&address, (socklen_t*)&addrlen);
