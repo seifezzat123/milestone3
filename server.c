@@ -95,7 +95,6 @@ void *handle_client(void *arg) {
             if (!(strncmp(buffer, "ls", 2) == 0 || strncmp(buffer, "cat", 3) == 0)) {
                 snprintf(response, sizeof(response), "Permission denied for guest");
             } else {
-                // Execute allowed guest command
                 FILE *fp = popen(buffer, "r");
                 if (fp == NULL) {
                     snprintf(response, sizeof(response), "Failed to run command");
